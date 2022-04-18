@@ -1,24 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Link, Navigate, Route, Routes } from "react-router-dom";
+import styles from "./App.module.css";
+import { ReactHookForm } from "./components/ReactHookForm/ReactHookForm";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className={styles.body}>
+      <header className={styles.header}>
+        <h1>POC Formulaires React</h1>
       </header>
+      <section className={styles.pageLinkContainer}>
+        <Link className={styles.link} to="/react-hook-form">
+          React Hook Form
+        </Link>
+      </section>
+      <div className={styles.pageContainer}>
+        <Routes>
+          <Route path="*" element={<Navigate to="/react-hook-form" />} />
+          <Route path="/react-hook-form" element={<ReactHookForm />} />
+        </Routes>
+      </div>
     </div>
   );
 }

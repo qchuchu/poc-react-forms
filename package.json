@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/material": "^5.6.1",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.0",
     "@testing-library/user-event": "^13.5.0",
@@ -10,8 +13,11 @@
     "@types/node": "^16.11.27",
     "@types/react": "^18.0.5",
     "@types/react-dom": "^18.0.1",
+    "mui": "0.0.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-hook-form": "^7.29.0",
+    "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "typescript": "^4.6.3",
     "web-vitals": "^2.1.4"
@@ -24,8 +30,122 @@
   },
   "eslintConfig": {
     "extends": [
+      "react-app/jest",
+      "eslint:recommended",
       "react-app",
-      "react-app/jest"
+      "plugin:jsx-a11y/recommended",
+      "plugin:prettier/recommended"
+    ],
+    "rules": {
+      "curly": [
+        "error",
+        "all"
+      ],
+      "eqeqeq": [
+        "error",
+        "smart"
+      ],
+      "import/no-extraneous-dependencies": [
+        "error",
+        {
+          "devDependencies": true,
+          "optionalDependencies": false,
+          "peerDependencies": false
+        }
+      ],
+      "no-shadow": [
+        "error",
+        {
+          "hoist": "all"
+        }
+      ],
+      "prefer-const": "error",
+      "import/order": [
+        "error",
+        {
+          "groups": [
+            [
+              "external",
+              "builtin"
+            ],
+            "internal",
+            [
+              "parent",
+              "sibling",
+              "index"
+            ]
+          ]
+        }
+      ],
+      "sort-imports": [
+        "error",
+        {
+          "ignoreCase": true,
+          "ignoreDeclarationSort": true,
+          "ignoreMemberSort": false,
+          "memberSyntaxSortOrder": [
+            "none",
+            "all",
+            "multiple",
+            "single"
+          ]
+        }
+      ],
+      "padding-line-between-statements": [
+        "error",
+        {
+          "blankLine": "always",
+          "prev": "*",
+          "next": "return"
+        }
+      ],
+      "react/no-string-refs": "warn",
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
+      "@typescript-eslint/explicit-function-return-type": "off"
+    },
+    "root": true,
+    "plugins": [
+      "import",
+      "jsx-a11y"
+    ],
+    "env": {
+      "browser": true,
+      "es6": true,
+      "node": true
+    },
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.ts?(x)"
+        ],
+        "extends": [
+          "plugin:@typescript-eslint/recommended",
+          "plugin:@typescript-eslint/recommended-requiring-type-checking",
+          "plugin:prettier/recommended"
+        ],
+        "parser": "@typescript-eslint/parser",
+        "parserOptions": {
+          "project": "tsconfig.json"
+        },
+        "rules": {
+          "@typescript-eslint/prefer-optional-chain": "error",
+          "no-shadow": "off",
+          "@typescript-eslint/no-shadow": "error",
+          "@typescript-eslint/prefer-nullish-coalescing": "error",
+          "@typescript-eslint/strict-boolean-expressions": "error",
+          "@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",
+          "@typescript-eslint/no-unnecessary-condition": "error",
+          "@typescript-eslint/no-unnecessary-type-arguments": "error",
+          "@typescript-eslint/prefer-string-starts-ends-with": "error",
+          "@typescript-eslint/switch-exhaustiveness-check": "error"
+        }
+      }
     ]
   },
   "browserslist": {
@@ -39,5 +159,17 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.19.0",
+    "@typescript-eslint/parser": "^5.19.0",
+    "eslint": "^8.13.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react-app": "^6.2.2",
+    "prettier": "^2.6.2"
   }
 }

@@ -1,0 +1,27 @@
+.body {
+  text-align: center;
+}
+
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.header {
+  font-size: calc(10px + 2vmin);
+}
+
+.pageLinkContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.link {
+  color: #61dafb;
+}
+
