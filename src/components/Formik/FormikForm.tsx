@@ -1,4 +1,3 @@
-import { Button } from "@mui/material";
 import { FastField, Field, Form, Formik } from "formik";
 import { useState } from "react";
 import * as Yup from "yup";
@@ -22,39 +21,42 @@ export const FormikForm = () => {
   const [validationMode, setValidationMode] = useState(noValidationMode);
 
   return (
-    <>
-      <Button
-        onClick={() => {
-          setValidationMode({ ...noValidationMode, validateOnBlur: true });
-        }}
-      >
-        Validate on blur
-      </Button>
-      <Button
-        onClick={() => {
-          setValidationMode({ ...noValidationMode, validateOnChange: true });
-        }}
-      >
-        Validate on change
-      </Button>
-      <Button
-        onClick={() => {
-          setValidationMode({ ...noValidationMode, validateOnMount: true });
-        }}
-      >
-        Validate on mount
-      </Button>
-      <Button
-        onClick={() => {
-          setValidationMode({ ...noValidationMode, validateOnSubmit: true });
-        }}
-      >
-        Validate on submit
-      </Button>
+    <div>
+      <div>
+        <button
+          onClick={() => {
+            setValidationMode({ ...noValidationMode, validateOnBlur: true });
+          }}
+        >
+          Validate on blur
+        </button>
+        <button
+          onClick={() => {
+            setValidationMode({ ...noValidationMode, validateOnChange: true });
+          }}
+        >
+          Validate on change
+        </button>
+        <button
+          onClick={() => {
+            setValidationMode({ ...noValidationMode, validateOnMount: true });
+          }}
+        >
+          Validate on mount
+        </button>
+        <button
+          onClick={() => {
+            setValidationMode({ ...noValidationMode, validateOnSubmit: true });
+          }}
+        >
+          Validate on submit
+        </button>
+      </div>
       <Formik
         initialValues={{
           nameFormik: "",
           emailFormik: "",
+          emailFormik2: "",
           usernameFormik: "",
           ageFormik: null,
         }}
@@ -78,10 +80,10 @@ export const FormikForm = () => {
             ageFormik
             <Field name="ageFormik" type="number" />
             <div>{errors.ageFormik}</div>
-            <Button type="submit">Submit</Button>
+            <button type="submit">Submit</button>
           </Form>
         )}
       </Formik>
-    </>
+    </div>
   );
 };
