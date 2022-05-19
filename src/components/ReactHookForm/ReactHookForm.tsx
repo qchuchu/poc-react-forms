@@ -1,37 +1,69 @@
-import { Button } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
-import { ControlledInput } from "./ControlledInput/ControlledInput";
 import styles from "./ReactHookForm.module.css";
-import { UncontrolledInput } from "./UncontrolledInput/UncontrolledInput";
-
-type NameFormPart = {
-  firstName: string;
-  lastName: string;
-};
 
 export type ComplexFormSchema = {
-  name: NameFormPart;
+  nameHook: string;
+  usernameHook: string;
+  emailHook: string;
+  ageHook: number | null;
 };
 
 export const ReactHookForm = () => {
   const methods = useForm<ComplexFormSchema>({
-    defaultValues: { name: { firstName: "", lastName: "" } },
+    mode: "onChange",
+    defaultValues: {
+      nameHook: "",
+      usernameHook: "",
+      emailHook: "",
+      ageHook: null,
+    },
   });
 
-  const onSubmit = (data: ComplexFormSchema): void => {
+  const onSubmit = (data: ComplexFormSchema) => {
     console.log(data);
   };
 
   return (
-    <FormProvider {...methods}>
-      {/* https://github.com/react-hook-form/react-hook-form/discussions/8020 */}
-      {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
-      <form className={styles.form} onSubmit={methods.handleSubmit(onSubmit)}>
-        <ControlledInput name="name.firstName" />
-        <ControlledInput name="name.lastName" />
-        <UncontrolledInput name="name.lastName" />
-        <Button type="submit">Submit</Button>
-      </form>
-    </FormProvider>
+    <div>
+      <FormProvider {...methods}>
+        {/* https://github.com/react-hook-form/react-hook-form/discussions/8020 */}
+        {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+        <form className={styles.form} onSubmit={methods.handleSubmit(onSubmit)}>
+          <input
+            {...methods.register("nameHook", {
+              required: true,
+            })}
+          />
+          {methods.formState.errors.nameHook && <span>Error on nameHook</span>}
+
+          <input
+            {...methods.register("usernameHook", {
+              required: true,
+            })}
+          />
+          {methods.formState.errors.usernameHook && (
+            <span>Error on nameHook</span>
+          )}
+
+          <input
+            {...methods.register("emailHook", {
+              maxLength: 2,
+            })}
+          />
+          {methods.formState.errors.emailHook && (
+            <span>Error on emailHook</span>
+          )}
+
+          <input
+            {...methods.register("ageHook", {
+              maxLength: 2,
+            })}
+          />
+          {methods.formState.errors.ageHook && <span>Error on emailHook</span>}
+
+          <button type="submit">Submit</button>
+        </form>
+      </FormProvider>
+    </div>
   );
 };
